@@ -271,6 +271,38 @@
     }
     footer p { font-size: .8rem; color: var(--muted); letter-spacing: .08em; }
 
+    /* ────────────── STAMPA / PDF ────────────── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 15mm 12mm;
+      }
+
+      /* Forza sfondi e colori anche in stampa */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Niente animazioni */
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      body::before { display: none; }
+
+      header { padding: 30px 24px 24px; }
+      main   { padding: 0 12px 20px; }
+      footer { padding: 16px 24px 20px; }
+
+      /* Evita tagli di pagina dentro le card */
+      .card, .brano-card, .year-band { break-inside: avoid; }
+
+      /* Nascondi i link "Visualizza spartito" — non cliccabili su carta */
+      .scale-link, .brano-link { display: none; }
+    }
+
     /* ────────────── ANIMAZIONI ────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(28px); }
@@ -365,7 +397,7 @@
   <span class="rule" style="width:60%; max-width:500px; margin-bottom:32px; display:block;"></span>
 
   <footer>
-    <p>Programma Ideato e Realizzato da Marco Castellini 🎺 &nbsp;·&nbsp; Anno 2025/2026</p>
+    <p>Programma ideato e realizzato da Marco Castellini 🎺 &nbsp;·&nbsp; Anno 2025/2026</p>
   </footer>
 
 </body>
